@@ -1,0 +1,49 @@
+esphome:
+  name: blinking-lights
+
+esp8266:
+  board: nodemcuv2
+
+sensor:
+  - platform: dht
+    pin: D1
+    temperature:
+      name: "My Temperature"
+    humidity:
+      name: "My Humidity"
+    update_interval: 60s
+    model: DHT22
+
+mqtt:
+  broker: 10.230.241.106
+  port: 1883
+#  username: blinking-lights
+#  password: "eufZf!7%&dFE"
+  birth_message:
+    topic: myavailability/topic
+    payload: online
+  will_message:
+    topic: myavailability/topic
+    payload: offline
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+#api:
+#  password: ""
+
+ota:
+  password: ""
+
+wifi:
+  ssid: "BYOD-REK"
+  password: "C0r0naREK!"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Blinking-Lights Fallback Hotspot"
+    password: "rMOoeTK1GEZP"
+
+captive_portal:
+    
